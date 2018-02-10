@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
 
             $table->string('name');
-            $table->string('description');
+            $table->string('description');            
             $table->text('long_description')->nullable();
             $table->float('price');
 
