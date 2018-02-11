@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Product;
+use App\ProductImage;
 
 use Illuminate\Http\Request;
 
@@ -41,8 +42,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-      //registrar el nuevo producto en la BD
-      //dd($request->all());
+      //Actualizar producto en la BD      
     	$product = Product::find($id);
     	$product->name = $request->input('name');
     	$product->description = $request->input('description');
@@ -51,5 +51,17 @@ class ProductController extends Controller
     	$product->save(); //UPDATE
 
     	return redirect('/admin/products');
-    }    
+    }
+
+    public function destroy($id)
+    {
+       
+	    //CartDetail::where('product_id', $id)->delete();/*TEMPORAL PARA PREVENIR ERROR DE DEPENDENCIAS AL BORRAR PRODUCTOS*/
+	    ProductImage::where('product_id', $id)->delete();/*TEMPORAL PARA PREVENIR ERROR DE DEPENDENCIAS AL BORRAR PRODUCTOS*/
+
+      //Borrar producto en la BD      
+    	$product = Product::find($id);
+    	$product->delete(); //DELETE
+    	return back();
+    }       
 }
