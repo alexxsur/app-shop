@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\ProductImage;
+use File;
 
 class ImageController extends Controller
 {
@@ -25,19 +26,31 @@ class ImageController extends Controller
     	$moved = $file->move($path, $fileName);
 
     // crear 1 registro en la tabla product_images
-    	//if ($moved) {
+    	if ($moved) {
 	    	$productImage = new ProductImage();
 	    	$productImage->image = $fileName;
 	    	// $productImage->featured = false;
 	    	$productImage->product_id = $id;
 	    	$productImage->save(); // INSERT
-    	//}
+    	}
 
     	return back();    	   	
    }
 
-   public function destroy($id)
+   public function destroy(Request $request, $id)
    {
-   	
+        // eliminar el archivo
+    	$productImage = ProductImage::find($request->image_id);
+    	if (substr($productImage->image, 0, 4) === "http") {
+    		$deleted = true;
+    	} else {
+    		$fullPath = public_path() . '/images/products/' . $productImage->image;
+    		$deleted = File::delete($fullPath);
+    	}
+    	// eliminar el registro de la img en la bd
+    	if ($deleted) {
+    		$productImage->delete();
+    	}
+    	return back();   	
    }      
 }
