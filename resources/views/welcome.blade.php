@@ -101,10 +101,10 @@
 
                     </div>
                 </div>
-                @endforeach
-                <div class="text-center">
-                    {{$products->links()}}
-                </div>
+                @endforeach                
+            </div>
+            <div class="text-center">
+                {{$products->links()}}
             </div>
         </div>
 
