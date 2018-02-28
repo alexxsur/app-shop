@@ -18,4 +18,14 @@ class CartDetailController extends Controller
 		$notification = 'El producto se ha cargado a tu carrito de compras exitosamente!';
     	return back()->with(compact('notification'));
     }
+
+    public function destroy(Request $request)
+    {
+    	$cartDetail = CartDetail::find($request->cart_detail_id);
+    	
+    	if ($cartDetail->cart_id == auth()->user()->cart->id)
+    		$cartDetail->delete();
+    	$notification = 'El producto se ha eliminado del carrito de compras correctamente.';
+    	return back()->with(compact('notification'));
+    }    
 }
