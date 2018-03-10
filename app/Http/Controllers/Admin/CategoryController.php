@@ -1,13 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\Category;
 use File;
-
 class CategoryController extends Controller
 {
 	public function index()
@@ -15,12 +11,10 @@ class CategoryController extends Controller
     	$categories = Category::orderBy('name')->paginate(10);
     	return view('admin.categories.index')->with(compact('categories')); // listado
     }
-
     public function create()
     {
     	return view('admin.categories.create'); // formulario de registro
     }
-
     public function store(Request $request)
     {
         $this->validate($request, Category::$rules, Category::$messages);
@@ -68,5 +62,5 @@ class CategoryController extends Controller
     {
         $category->delete(); // DELETE
         return back();
-    }    
+    }
 }
