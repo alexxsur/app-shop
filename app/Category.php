@@ -24,4 +24,10 @@ class Category extends Model
     {
     	return $this->hasMany(Product::class);
     }
+
+    public function getFeaturedImageUrlAttribute()
+    {
+      $featuresProduct = $this->products()->first();
+      return $featuresProduct->featured_image_url;
+    }    
 }
