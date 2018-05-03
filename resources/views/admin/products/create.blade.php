@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Bienvenio a App Shop')
+@section('title','Bienvenio a '.config('app.name'))
 
 @section('body-class','product-page')
 
