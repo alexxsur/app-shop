@@ -32,6 +32,10 @@
                             <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <label class="control-label">Imagen de la categoría</label>
+                        <input type="file" name="image">
+                    </div>
                 </div>
 
                 <textarea class="form-control" placeholder="Descripción de la categoría" rows="5" name="description">{{ old('description') }}</textarea>

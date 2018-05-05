@@ -6,14 +6,14 @@ use App\Category;
 use File;
 class CategoryController extends Controller
 {
-	public function index()
+    public function index()
     {
-    	$categories = Category::orderBy('name')->paginate(10);
-    	return view('admin.categories.index')->with(compact('categories')); // listado
+        $categories = Category::orderBy('name')->paginate(10);
+        return view('admin.categories.index')->with(compact('categories')); // listado
     }
     public function create()
     {
-    	return view('admin.categories.create'); // formulario de registro
+        return view('admin.categories.create'); // formulario de registro
     }
     public function store(Request $request)
     {
