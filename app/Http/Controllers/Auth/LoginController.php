@@ -24,6 +24,7 @@ class LoginController extends Controller
         return 'username';
     }
 
+
     public function showLoginForm(IlluminateRequest $request)
     {
         if ($request->has('redirect_to')) {
@@ -32,6 +33,7 @@ class LoginController extends Controller
 
         return view('auth.login');
     }
+
 
     public function redirectTo()
     {
